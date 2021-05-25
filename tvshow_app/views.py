@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from datetime import date, time, datetime
 from .models import *
 
 def index(request):
@@ -21,6 +22,8 @@ def display(request, show_id):
     context={
         'tv_show': Show.objects.get(id=show_id)
     }
+    # x = context['tv_show'].release_date
+    # context['tv_show'].release_date = datetime.strftime(x, "%b. %d, %Y")
     return render(request, 'display.html', context)
 
 def update(request, show_id):
