@@ -1,0 +1,22 @@
+#wrapper{
+    width: 900px;
+    margin: 0px auto;
+}
+table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    border: 2px solid black;
+}
+td, th{
+    border: thin solid red;
+    /* border-right: 5px solid red */
+    text-align: left;
+    padding: 10px;
+}
+th{
+    background-color: rgb(175, 175, 175);
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
