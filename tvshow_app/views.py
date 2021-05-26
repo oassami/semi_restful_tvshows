@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from datetime import date, time, datetime
+from django.contrib import messages
+
 from .models import *
 
 def index(request):
@@ -15,6 +16,17 @@ def create(request):
     if request.method=="GET":
         return render(request, 'new.html')
     else:
+        errors = Show.objects.addShowValidation(request.POST)
+        if errors:
+            for key, value in errors.items():
+                messages.error(request, value)
+            context = {
+                'title': request.POST['title'],
+                'network': request.POST['network'],
+                'release_date': request.POST['release_date'],
+                'description': request.POST['description']
+            }
+            return render(request, 'new.html', context)
         show = Show.objects.create(title=request.POST['title'], network=request.POST['network'], release_date=request.POST['release_date'], description=request.POST['description'])
     return redirect(f'/shows/{show.id}')
 
@@ -22,8 +34,6 @@ def display(request, show_id):
     context={
         'tv_show': Show.objects.get(id=show_id)
     }
-    # x = context['tv_show'].release_date
-    # context['tv_show'].release_date = datetime.strftime(x, "%b. %d, %Y")
     return render(request, 'display.html', context)
 
 def update(request, show_id):
@@ -38,6 +48,14 @@ def update(request, show_id):
         show.network=request.POST['network']
         show.release_date=request.POST['release_date']
         show.description=request.POST['description']
+        errors = Show.objects.addShowValidation(request.POST)
+        if errors:
+            for key, value in errors.items():
+                messages.error(request, value)
+            context = {
+                'tv_show': show
+            }
+            return render(request, 'edit.html', context)
         show.save()
         context={
             'tv_show': show

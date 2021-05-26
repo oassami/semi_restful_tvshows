@@ -11,6 +11,13 @@
 </head>
 
 <body>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div id="wrapper">
         <a href="/shows">Go Back</a>
         <h1>Edit Show {{tv_show.id}}</h1>

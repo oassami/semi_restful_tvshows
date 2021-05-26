@@ -11,19 +11,26 @@
 </head>
 
 <body>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div id="wrapper">
         <a href="/shows">Go Back</a>
         <h1>Add a New Show</h1>
         <form action="/shows/new" method="POST">
             {% csrf_token %}
             <p>Title: </p>
-            <input type="text" name="title">
+            <input type="text" name="title" value="{{title}}">
             <p>Network: </p>
-            <input type="text" name="network">
+            <input type="text" name="network" value="{{network}}">
             <p>Release Date: </p>
-            <input type="date" name="release_date">
+            <input type="date" name="release_date" value="{{release_date}}">
             <p>Description: </p>
-            <textarea name="description"></textarea><br>
+            <textarea name="description">{{description}}</textarea><br>
             <input type="submit" value="Create">
         </form>
     </div>
