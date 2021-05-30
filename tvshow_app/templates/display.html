@@ -12,14 +12,14 @@
 
 <body>
     <div id="wrapper">
-        <a href="/shows">Go Back</a>
-        <h1>TV Show {{tv_show.id}}</h1>
-        <p>Title: {{tv_show.title}}</p>
-        <p>Network: {{tv_show.network}}</p>
-        <p>Release Date: {{tv_show.release_date}}</p>
-        <p>Description: {{tv_show.description}}</p>
-        <p>Last Updated: {{tv_show.updated_at}}</p>
-        <a href="/shows/{{tv_show.id}}/edit">Edit</a> | <a href="/shows/{{tv_show.id}}/destroy">Delete</a>
+        <a href="/">Go Back</a>
+        <h1>TV Show {{request.session.id}}</h1>
+        <p>Title: {{request.session.title}}</p>
+        <p>Network: {{request.session.network}}</p>
+        <p>Release Date: {{request.session.release_date}}</p>
+        <p>Description: {{request.session.description}}</p>
+        <p>Last Updated: {{request.session.updated_at}}</p>
+        <a href="/shows/{{request.session.id}}/edit">Edit</a> | <a href="/shows/{{request.session.id}}/destroy">Delete</a>
     </div>
 </body>
 

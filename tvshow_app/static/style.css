@@ -20,3 +20,7 @@ th{
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+#desc{
+    width: 200px;
+    height: 100px;
+}
